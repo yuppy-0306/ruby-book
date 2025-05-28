@@ -1,4 +1,7 @@
 module Effects
-  def self.test_reverse
+  def self.reverse
+    ->(words) do
+      words.split(' ').map(&:reverse).join(' ')
+    end
   end
 end
