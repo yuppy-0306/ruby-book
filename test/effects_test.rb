@@ -14,16 +14,12 @@ class EffectsTest < Minitest::Test
     effect = Effects.echo(3)
     assert_equal 'RRRuuubbbyyy iiisss fffuuunnn!!!', effect.call('Ruby is fun!')
   end
-end
 
-module Effects
-  def self.reverse
-    ->(words) { words.split(' ').map(&:reverse).join(' ') }
-  end
+  def test_loud
+    effect = Effects.loud(2)
+    assert_equal 'RUBY!! IS!! FUN!!!', effect.call('Ruby is fun!')
 
-  def self.echo(rate)
-    ->(words) do
-      words.each_char.map { |c| c == ' ' ? c : c * rate }.join
-    end
+    effect = Effects.loud(3)
+    assert_equal 'RUBY!!! IS!!! FUN!!!!', effect.call('Ruby is fun!')
   end
 end
